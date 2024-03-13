@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/save" method="post" enctype="multipart/form-data">
+        <input type="text" name="productID" id="" placeholder="product ID">
+        <br>
+        <input type="text" name="productName" id="productName" placeholder="product name">
+        <br>
+        <input type="text" name="quantity" id="quantity" placeholder="quantity">
+        <br>
+        <input type="file" name="image" id="image" accept="image/*">
+        <br>
+        <button type="submit" value="Add">Add</button>
+    </form>
+
+    <form action="/delete" method="post" enctype="application/x-www-form-urlencoded">
+        <table border="true">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < data.length; i++) { %>
+                    <tr>
+                        <td><%= data[i].productID %></td>
+                        <td><%= data[i].productName %></td>
+                        <td><%= data[i].quantity %></td>
+                        <td><img src="<%= data[i].image %>" width="48" height="48" /></td>
+                        <td>
+                            <input type="checkbox" name="<%= data[i].productID %>" id="<%= data[i].productID %>" />
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <button type="submit" value="DELETE">DELETE</button>
+    </form>
+
+</body>
+</html>
